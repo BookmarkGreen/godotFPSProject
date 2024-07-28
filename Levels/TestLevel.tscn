@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://i5dgwd1mhwlx"]
 
-[ext_resource type="PackedScene" uid="uid://skip0h0aaahg" path="res://Player/Player.tscn" id="1_01p8g"]
-[ext_resource type="Script" path="res://Levels/Level.gd" id="1_3cdnj"]
+[ext_resource type="Script" path="res://Levels/Level.gd" id="1_2ba2t"]
+[ext_resource type="PackedScene" uid="uid://skip0h0aaahg" path="res://Player/Player.tscn" id="2_pxy5p"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ooi1d"]
 sky_top_color = Color(0.187758, 0.465811, 0.704354, 1)
@@ -22,7 +22,7 @@ glow_enabled = true
 albedo_color = Color(0.0904359, 0.444728, 0.0240139, 1)
 
 [node name="Level" type="Node3D"]
-script = ExtResource("1_3cdnj")
+script = ExtResource("1_2ba2t")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
@@ -71,5 +71,5 @@ transform = Transform3D(-4.98498, 0, 0, 0, 1.00305, 0, 0, 0, 6.23052, -8.55416, 
 use_collision = true
 collision_layer = 2
 
-[node name="Player" parent="." instance=ExtResource("1_01p8g")]
+[node name="Player" parent="." instance=ExtResource("2_pxy5p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.54266, 3.31704, 0.917494)

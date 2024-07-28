@@ -1,6 +1,6 @@
 extends Control
 
-@onready var level_scene = preload("res://Levels/Level.tscn") as PackedScene
+@onready var level_scene = preload("res://Levels/TestLevel.tscn") as PackedScene
 
 
 
