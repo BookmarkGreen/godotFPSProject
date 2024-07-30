@@ -229,7 +229,4 @@ script = ExtResource("4_5kva4")
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource("5_axt3l")
 
-[node name="SprintingMovement" type="Node" parent="StateMachine"]
-script = ExtResource("5_axt3l")
-
 [connection signal="animation_started" from="PlayerAnimationPlayer" to="." method="_on_player_animation_player_animation_started"]

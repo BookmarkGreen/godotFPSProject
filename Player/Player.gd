@@ -3,6 +3,7 @@ extends CharacterBody3D
 
 var speed
 
+@export var states: Dictionary = { Idle = "Idle", Movement = "Movement", Jump = "Jump" }
 @export var CROUCH_SPEED: float #2.5
 @export var SPRINT_CROUCH_SPEED: float #4.5
 
@@ -49,13 +50,6 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-	elif Input.is_action_just_pressed("jump") and is_on_wall_only():
-		velocity.y = JUMP_VELOCITY
-	
 	
 	# Handle Run
 	if Input.is_action_pressed("sprint"):
@@ -74,30 +68,10 @@ func _physics_process(delta):
 		BASE_FOV = 75.0
 	if Input.is_action_just_pressed("crouch"):
 		toggle_crouch()
-	if(player.is_on_wall()):
-		print("Is on wall")
+		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("left", "right", "up", "down")
-	var direction = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if is_on_floor():
-		if direction:
-			velocity.x = direction.x * speed
-			velocity.z = direction.z * speed
-		else:
-			velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
-			velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
-	else:
-		velocity.x = lerp(velocity.x, direction.x * speed, delta * 4.0)
-		velocity.z = lerp(velocity.z, direction.z * speed, delta * 4.0)
-
-	t_bob += delta * velocity.length() * float(is_on_floor())
-	camera.transform.origin = _headbob(t_bob)
 	
-	var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)
-	var target_fov = BASE_FOV + FOV_MULT * velocity_clamped
-	camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
-	move_and_slide()
 	
 func _headbob(time) -> Vector3:
 	var pos = Vector3.ZERO
